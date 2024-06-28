@@ -1,0 +1,110 @@
+optimizer:
+  choice: 'gradient_descent'
+  options: # notation of large/small numbers with e must incorporate the decimal point and +/-
+    maxiter: 40
+    lr_decay: 0.97
+    gtol: 1.0e-10
+    stepsize_translation: 100
+    stepsize_rotation: 100
+target_function:
+  choice: 'diffusion_likelihood'
+  method: 'rk4'
+  stepsize: 0.1
+  adjoint_stepsize: 0.05
+  adjoint_method: null
+  adjoint_rtol: null
+  adjoint_atol: null
+  checkpoint_path: 'checkpoint_ncsnpp_small.pth'
+  profile: False
+motion_model_perturb:
+  choice: 'spline_akima'
+  num_nodes: 10
+motion_model_recover:
+  choice: 'spline_akima'
+  num_nodes: 30
+data:
+  amplitude_rotation: 5  # deg
+  amplitude_translation: 5  # mm
+  samples_eval: ['300', '301', '302', '303', '308', '309', '310', '311', '312', '313', '314', '316', '317', '319', '320',
+                 '323', '324', '325', '328', '329', '330', '333', '340', '341', '342', '343', '344', '346', '347', '348']
+  samples: ['368']
+  # for score sde repo
+  dataset: 'motion'
+  root_dir: './data'
+  image_size: 256
+  random_flip: True
+  uniform_dequantization: False
+  centered: False
+  num_channels: 1
+experiment_name: 'example_data_run'  # force user to configure this one every time from command line
+random_seed: 27
+data_dir: './data'  # force user to configure this one every time from command line
+hydra:
+  run:
+    dir: out/${optimizer.choice}/${target_function.choice}/${experiment_name}  # configure hydra output directory
+
+### now follows all the stuff defined in the config of the score sde repo
+sampling:
+  n_steps_each: 1
+  noise_removal: True
+  probability_flow: False
+  snr: 0.075
+  method: 'pc'
+  predictor: 'reverse_diffusion'
+  corrector: 'langevin'
+
+training:
+  n_iters: 100000
+  sde: 'vesde'
+  continuous: True
+  batch_size: 16
+  snapshot_freq: 10000
+  log_freq: 50
+  eval_freq: 500
+  snapshot_freq_for_preemption: 5000
+  snapshot_sampling: True
+  likelihood_weighting: False
+  reduce_mean: False
+
+model:
+  sigma_max: 378  # todo: maximum noise perturbation during training
+  sigma_min: 0.01  # todo: minimum noise perturbation during training
+  num_scales: 2000
+  beta_min: 0.1
+  beta_max: 20.
+  dropout: 0.
+  embedding_type: 'fourier'
+  name: 'ncsnpp'
+  scale_by_sigma: True
+  ema_rate: 0.999
+  normalization: 'GroupNorm'
+  nonlinearity: 'swish'
+  nf: 64
+  ch_mult: [1, 2, 2, 2]  # , 2, 2, 2)
+  num_res_blocks: 2
+  attn_resolutions: [16]
+  resamp_with_conv: True
+  conditional: True
+  fir: False  # todo: remove cpp_extension code
+  fir_kernel: [1, 3, 3, 1]
+  skip_rescale: True
+  resblock_type: 'biggan'
+  progressive: 'output_skip'
+  progressive_input: 'input_skip'
+  progressive_combine: 'sum'
+  attention_type: 'ddpm'
+  init_scale: 0.
+  fourier_scale: 16
+  conv_size: 3
+
+optim:
+  weight_decay: 0
+  optimizer: 'Adam'
+  lr: 2.0e-4
+  beta1: 0.9
+  eps: 1.0e-8
+  warmup: 5000
+  grad_clip: 1.
+
+seed: 42
+device: 'cuda:0'

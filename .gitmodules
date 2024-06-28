@@ -1,0 +1,6 @@
+[submodule "score_sde_pytorch"]
+	path = score_sde_pytorch
+	url = https://github.com/mareikethies/score_sde_pytorch.git
+[submodule "geometry_gradients_CT"]
+	path = geometry_gradients_CT
+	url = https://github.com/mareikethies/geometry_gradients_CT.git
