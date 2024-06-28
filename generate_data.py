@@ -102,4 +102,3 @@ if __name__ == '__main__':
     root_dir = Path('your_path/CQ500_head_CT_cleaned_thin')
     out_dir = Path('your_path/HeadSimulatedProjectionDataCQ500FanBeam/motion_free')
     create_dataset(root_dir, out_dir)
-    check_number_of_samples(out_dir)
