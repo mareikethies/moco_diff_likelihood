@@ -215,18 +215,3 @@ class MotionModel2DTorch:
                      (free_params[0::3], free_params[1::3], free_params[2::3]))
         else:
             return perturbed_matrices
-
-
-if __name__ == '__main__':
-    m = MotionModel2DTorch('spline_akima', num_projections=360, num_nodes=4)
-    free_params = torch.rand(4 * 3).to('cuda')
-
-    proj_mats_updated, motion_curves = m.eval(free_params, torch.rand(2, 3, 360).to('cuda'), True, True, True)
-
-    import matplotlib.pyplot as plt
-    plt.figure()
-    for i in range(3):
-        plt.plot(motion_curves[0][i].cpu().numpy())
-        plt.plot(motion_curves[1][i].cpu().numpy(), motion_curves[2][i].cpu().numpy(), 'x', color='black')
-
-    plt.show()
