@@ -6,8 +6,9 @@
 Differentiable Score-Based Likelihoods: Learning CT Motion Compensation From Clean Images
 =========================================================================================
 
-This repository contains the code for our paper **Differentiable Score-Based Likelihoods: Learning CT Motion
-Compensation From Clean Images** which will be presented at MICCAI 2024. Trained weights and example data are provided
+This repository contains the source code for our paper **Differentiable Score-Based Likelihoods: Learning CT Motion
+Compensation From Clean Images** which has been presented at `MICCAI 2024 
+<https://link.springer.com/chapter/10.1007/978-3-031-72104-5_25>`_. Trained weights and example data are provided
 to run the proposed CT motion algorithm using differentiable likelihood computation of diffusion models, as well as code
 and weights for the reference methods. This repository also contains the code to create the full data set based on the
 publicly available CQ500 data set which can be used to train the models.
@@ -96,13 +97,15 @@ If you use this code for your research, please cite our paper:
 
 .. code-block::
 
-    @misc{thies2024,
-      title={{Differentiable Score-Based Likelihoods: Learning CT Motion Compensation From Clean Images}},
-      author={Mareike Thies and Noah Maul and Siyuan Mei and Laura Pfaff and Nastassia Vysotskaya and Mingxuan Gu and Jonas Utz and Dennis Possart and Lukas Folle and Fabian Wagner and Andreas Maier},
-      year={2024},
-      eprint={2404.14747},
-      archivePrefix={arXiv},
-      url={https://arxiv.org/abs/2404.14747},
+    @InProceedings{10.1007/978-3-031-72104-5_25,
+        author="Thies, Mareike and Maul, Noah and Mei, Siyuan and Pfaff, Laura and Vysotskaya, Nastassia and Gu, Mingxuan and Utz, Jonas and Possart, Dennis and Folle, Lukas and Wagner, Fabian and Maier, Andreas",
+        editor="Linguraru, Marius George and Dou, Qi and Feragen, Aasa and Giannarou, Stamatia and Glocker, Ben and Lekadir, Karim and Schnabel, Julia A.",
+        title="Differentiable Score-Based Likelihoods: Learning CT Motion Compensation from Clean Images",
+        booktitle="Medical Image Computing and Computer Assisted Intervention -- MICCAI 2024",
+        year="2024",
+        publisher="Springer Nature Switzerland",
+        address="Cham",
+        pages="253--263",
     }
 
 If you have any questions about this repository or the paper, feel free to reach out
