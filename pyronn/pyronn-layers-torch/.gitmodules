@@ -1,0 +1,3 @@
+[submodule "pyro-nn-layers"]
+	path = pyro-nn-layers
+	url = git@git01.iis.fhg.de:syb/pyro-nn-layers.git
