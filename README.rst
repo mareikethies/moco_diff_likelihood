@@ -91,6 +91,17 @@ diffusion models by Song et al. (`see paper <https://openreview.net/forum?id=PxT
 of the appendix, `see github <https://github.com/yang-song/score_sde_pytorch>`_). The source code for both works is
 published under Apache 2.0 license.
 
+We further provide sources for the PyroNN package as used for development of this project. The original, but outdated
+repository is `here <https://github.com/csyben/PYRO-NN>`_. For this project, please install pyronn from the provided
+sources in the ``pyronn`` folder by running (from within that folder)
+
+    .. code-block::
+
+        python -m pip install -e pyronn-layers-torch
+        python -m pip install -e pyronn
+
+This requires a version of pytorch < 2.0.
+
 Citation
 ~~~~~~~~
 If you use this code for your research, please cite our paper:
